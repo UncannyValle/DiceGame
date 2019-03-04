@@ -13,12 +13,13 @@ var scores, roundScore, activePlayer, gamePlaying;
 
 init();
 
+var lastDice;
 /*******************
  * Button Roll
  *******************/
 document.querySelector('.btn-roll').addEventListener('click', function () {
     if (gamePlaying) {
-        // 1. Random number
+        // 1. Random number & six counter
         var dice = Math.floor(Math.random() * 6) + 1;
 
         // 2. Display result
@@ -26,15 +27,22 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
         diceDom.style.display = 'block';
         diceDom.src = 'dice-' + dice + '.png';
 
-        // 3. Update the round score IF the rolled number was not a 1
-        if (dice !== 1) {
+        // 3. Update the round score IF the rolled number was not a 1 and if theres two 6 in a row reset the whole score.
+        if (dice === 6 && lastDice === 6) {
+            scores[activePlayer] = 0;
+            document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
+            nextPlayer();
+        } else if (dice !== 1) {
             //add score
             roundScore += dice;
             document.querySelector('#current-' + activePlayer).textContent = roundScore;
-        } else {
-            // 4. Next player
+        }
+        // 4. Next player
+        else {
             nextPlayer();
         }
+
+        lastDice = dice;
     }
 });
 
@@ -49,7 +57,7 @@ document.querySelector('.btn-hold').addEventListener('click', function () {
         // Update the UI
         document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
         // Check if player won the game
-        if (scores[activePlayer] >= 10) {
+        if (scores[activePlayer] >= 100) {
             document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
             document.querySelector('.dice').style.display = 'none';
             document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
