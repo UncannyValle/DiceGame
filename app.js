@@ -8,6 +8,10 @@ GAME RULES:
 - The first player to reach 100 points on GLOBAL score wins the game
 
 */
+/* 
+Challenges
+- add an imput field in the html where players can set teh winning score
+*/
 
 var scores, roundScore, activePlayer, gamePlaying;
 
@@ -29,8 +33,9 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
 
         // 3. Update the round score IF the rolled number was not a 1 and if theres two 6 in a row reset the whole score.
         if (dice === 6 && lastDice === 6) {
+           //Player loses score
             scores[activePlayer] = 0;
-            document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
+            document.querySelector('#score-' + activePlayer).textContent = '0';
             nextPlayer();
         } else if (dice !== 1) {
             //add score

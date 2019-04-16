@@ -45,6 +45,13 @@ body {
     padding: 100px;
 }
 
+#dice-1 {
+    top: 125px;
+}
+
+#dice-2 {
+    top: 250px;
+}
 
 
 /**********************************************
@@ -175,4 +182,36 @@ i {
 .winner .player-name {
     font-weight: 300;
     color: #EB4D4D;
+}
+
+#winscore {
+    position: absolute;
+    text-align: center;
+    border-color: #EB4D4D;
+    border-style: solid;
+    width: 100px;
+    padding: 5px;
+    left: 45%;
+    top: 540px;
+    color: #555;
+    background: none;
+    font-family: Lato;
+    font-size: 20px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 300;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#winscore:focus {
+    outline: none;
+}
+
+#winscrtext {
+    position: absolute;
+    left: 43%;
+    top: 510px;
+    font-family: Lato;
+    font-size: 20px;
+    text-transform: uppercase;
 }
